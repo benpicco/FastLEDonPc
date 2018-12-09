@@ -3,6 +3,8 @@ penultimateword = $(wordlist $(words $1),$(words $1), x $1)
 SKETCH_ROOT := $(shell dirname $(abspath $(call penultimateword, $(MAKEFILE_LIST))))
 NATIVE_ROOT := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 
+Q ?= @
+
 BUILD_ROOT ?= build
 SKETCH ?= $(shell find $(SKETCH_ROOT) -maxdepth 1 -name "*.ino")
 
@@ -10,7 +12,7 @@ TARGET := $(shell basename -s .ino $(SKETCH))
 
 $(shell mkdir -p $(BUILD_ROOT))
 
-CFLAGS += -Wall -Wextra
+CFLAGS += -Wall -Wextra -Wno-unused-parameter -Wno-class-memaccess
 CFLAGS += -DARDUINO=101 -DSKETCH_FILE=\"$(SKETCH)\"
 CFLAGS += -DFASTLED_SDL $(shell sdl2-config --cflags)
 
@@ -42,7 +44,8 @@ SRCS += $(SRC_C)
 SRCS += $(SRC_CXX)
 
 $(TARGET): $(OBJECTS)
-	$(CXX) $(OBJECTS) $(LDFLAGS) -o $@
+	$(Q)$(CXX) $(OBJECTS) $(LDFLAGS) -o $@
+	@size $@
 
 clean:
 	rm -r $(BUILD_ROOT)
@@ -57,13 +60,13 @@ print:
 	@echo "ROOT:\t $(NATIVE_ROOT)"
 
 $(BUILD_ROOT)/%.o : %.c $(DEPDIR)/%.d
-	mkdir -p `dirname $@`
-	$(CC) $(DEPFLAGS) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@mkdir -p `dirname $@`
+	$(Q)$(CC) $(DEPFLAGS) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	$(POSTCOMPILE)
 
 $(BUILD_ROOT)/%.o : %.cpp $(DEPDIR)/%.d
-	mkdir -p `dirname $@`
-	$(CXX) $(DEPFLAGS) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@mkdir -p `dirname $@`
+	$(Q)$(CXX) $(DEPFLAGS) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	$(POSTCOMPILE)
 
 $(DEPDIR)/%.d: ;
