@@ -7,6 +7,7 @@ In particular, you can run [FastLED](http://fastled.io/) sketches with [Adafruit
 
 It is made for Linux using SDL.
 
+![Hello World!](https://user-images.githubusercontent.com/1301112/49700142-37f4cd80-fbdb-11e8-8783-30b7dcfdaad9.png)
 
 ## Why?
 
