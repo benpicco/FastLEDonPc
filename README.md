@@ -3,7 +3,7 @@
 ## What?
 
 With this software you can run an Arduino Sketch on your PC.
-In particular, you can run FastLED sketches with Adafruit-GFX.
+In particular, you can run [FastLED](http://fastled.io/) sketches with [Adafruit-GFX](https://learn.adafruit.com/adafruit-gfx-graphics-library/).
 
 It is made for Linux using SDL.
 
