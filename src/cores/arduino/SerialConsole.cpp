@@ -5,6 +5,7 @@
  *      Author: christoph
  */
 
+#include <cstdio>
 #include "SerialConsole.h"
 
 SerialConsole::SerialConsole()
@@ -48,3 +49,4 @@ size_t SerialConsole::write(const uint8_t c)
 	return 1;
 }
 
+SerialConsole Serial;
