@@ -43,6 +43,8 @@ void setup()
 	FastLED.clear(true);
 
 	matrix.begin();
+
+	Serial.println("Hello World!");
 }
 
 static const uint16_t colors[] = {
@@ -52,7 +54,7 @@ static const uint16_t colors[] = {
 
 void loop()
 {
-	static int pass;
+	static unsigned pass;
 	static int x = matrix.width();
 
 	matrix.clear();

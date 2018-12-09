@@ -1,4 +1,8 @@
-SKETCH_ROOT := $(shell pwd)
+penultimateword = $(wordlist $(words $1),$(words $1), x $1)
+
+SKETCH_ROOT := $(shell dirname $(abspath $(call penultimateword, $(MAKEFILE_LIST))))
+NATIVE_ROOT := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
+
 BUILD_ROOT ?= build
 SKETCH ?= $(shell find $(SKETCH_ROOT) -maxdepth 1 -name "*.ino")
 
@@ -24,10 +28,10 @@ SRC_CXX  += $(shell find $1 -name '*.cpp')
 INCLUDES += -I$1
 endef
 
-INCLUDES += -Isrc/cores/arduino -Isrc/system
-$(eval $(call add_lib,src))
+INCLUDES += -I$(NATIVE_ROOT)/src/cores/arduino -I$(NATIVE_ROOT)/src/system
+$(eval $(call add_lib,$(NATIVE_ROOT)/src))
 
-$(foreach lib, $(ARDUINO_LIBS), $(eval $(call add_lib,libraries/$(lib))))
+$(foreach lib, $(ARDUINO_LIBS), $(eval $(call add_lib,$(NATIVE_ROOT)/libraries/$(lib))))
 
 OBJECTS += $(SRC_C:%.c=$(BUILD_ROOT)/%.o)
 OBJECTS += $(SRC_CXX:%.cpp=$(BUILD_ROOT)/%.o)
@@ -50,6 +54,7 @@ print:
 	@echo "OBJECTS:\t $(OBJECTS)"
 	@echo "SRCS:\t $(SRCS)"
 	@echo "SKETCH:\t $(SKETCH)"
+	@echo "ROOT:\t $(NATIVE_ROOT)"
 
 $(BUILD_ROOT)/%.o : %.c $(DEPDIR)/%.d
 	mkdir -p `dirname $@`
