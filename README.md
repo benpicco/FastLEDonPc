@@ -20,6 +20,16 @@ Then simply run `make` as usual.
 
 See the `example/` directory for an example.
 
+This uses a patched version of FastLED which outputs to a SDL buffer instead of real hardware.
+
+You use the following enviroment variables to control the simulated LED matrix:
+
+ - `FASTLED_WIDTH`: With of the Matrix
+ - `FASTLED_HEIGHT`: Height of the Matrix
+ - `FASTLED_SCALE`: How many screen pixels each LED should be represented as
+
+The Layout for NeoMatrix is `NEO_MATRIX_TOP + NEO_MATRIX_LEFT + NEO_MATRIX_ROWS` (no ZIGZAG as you would want on real hardware)
+
 # Installation
 
 SDL is used to render a simulation of the LED-Strip Matrix.
