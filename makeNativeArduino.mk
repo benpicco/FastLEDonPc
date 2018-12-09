@@ -12,9 +12,12 @@ TARGET := $(shell basename -s .ino $(SKETCH))
 
 $(shell mkdir -p $(BUILD_ROOT))
 
-CFLAGS += -Wall -Wextra -Wno-unused-parameter -Wno-class-memaccess
+CFLAGS += -Wall -Wextra -Wno-unused-parameter
 CFLAGS += -DARDUINO=101 -DSKETCH_FILE=\"$(SKETCH)\"
 CFLAGS += -DFASTLED_SDL $(shell sdl2-config --cflags)
+
+CXXFLAGS += $(CFLAGS)
+CXXFLAGS += -Wno-class-memaccess # FastLED does some naughty things
 
 LDFLAGS += $(shell sdl2-config --libs)
 LDFLAGS += -Wl,--gc-sections
@@ -66,7 +69,7 @@ $(BUILD_ROOT)/%.o : %.c $(DEPDIR)/%.d
 
 $(BUILD_ROOT)/%.o : %.cpp $(DEPDIR)/%.d
 	@mkdir -p `dirname $@`
-	$(Q)$(CXX) $(DEPFLAGS) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(Q)$(CXX) $(DEPFLAGS) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 	$(POSTCOMPILE)
 
 $(DEPDIR)/%.d: ;
