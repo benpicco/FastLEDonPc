@@ -1,8 +1,7 @@
 CXX ?= g++
 CC  ?= gcc
 
-CFLAGS += -Wall
-
+CFLAGS += -Wall -DARDUINO=101
 # path #
 SRC_PATH = src
 BUILD_PATH = build
@@ -29,10 +28,10 @@ OBJECTS+= $(C_SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 DEPS = $(OBJECTS:.o=.d)
 
 # flags #
-COMPILE_FLAGS = -std=c++11 -Wall -Wextra -g
+COMPILE_FLAGS = -std=c++11 -Wall -Wextra -g -DARDUINO=101 -DFASTLED_SDL $(shell sdl2-config --cflags)
 INCLUDES = -I include/ -I /usr/local/include $(foreach d, $(INC_DIR), -I$d)
 # Space-separated pkg-config libraries used by this project
-LIBS = -lX11
+LIBS = -lX11 $(shell sdl2-config --libs)
 
 .PHONY: default_target
 default_target: release
@@ -66,7 +65,7 @@ all: $(BIN_PATH)/$(BIN_NAME)
 # Creation of the executable
 $(BIN_PATH)/$(BIN_NAME): $(OBJECTS)
 	@echo "Linking: $@"
-	$(CXX) $(OBJECTS) $(LIBS) -o $@
+	$(CXX) $(OBJECTS) -Wl,--gc-sections $(LIBS) -o $@
 
 # Source file rules
 # After the first compilation they will be joined with the rules from the

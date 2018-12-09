@@ -27,7 +27,8 @@ SerialConsole Serial;
 //#include "TekSpriteEditor.ino"
 //#include "guiTest.ino"
 //#include <TekSpriteEditor2.ino>
-#include "hello_world.ino"
+//#include "hello_world.ino"
+#include "blinken.ino"
 
 int main()
 {
