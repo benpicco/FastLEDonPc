@@ -31,6 +31,8 @@ You use the following enviroment variables to control the simulated LED matrix:
 
 The Layout for NeoMatrix is `NEO_MATRIX_TOP + NEO_MATRIX_LEFT + NEO_MATRIX_ROWS` (no ZIGZAG as you would want on real hardware)
 
+If things appear too dark, use the `+` key to increase brightness.
+
 # Installation
 
 SDL is used to render a simulation of the LED-Strip Matrix.
