@@ -32,7 +32,8 @@ static FastLED_NeoMatrix matrix = FastLED_NeoMatrix(leds, M_WIDTH, M_HEIGHT, NEO
 
 void setup()
 {
-	FastLED.addLeds<LED_TYPE, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS);
+	FastLED.addLeds<SDL, M_WIDTH, M_HEIGHT>(leds, NUM_LEDS);
+//	FastLED.addLeds<LED_TYPE, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS);
 	FastLED.setCorrection(TypicalLEDStrip);
 //	FastLED.setBrightness(5);	// low brightness so we can test the strip just using USB
 	FastLED.clear(true);
