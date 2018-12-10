@@ -15,6 +15,7 @@
 #include <cmath>
 
 //#include "posixWrapper.h"
+#include "binary.h"
 #include "posixTime.h"
 
 #include "SerialConsole.h"
