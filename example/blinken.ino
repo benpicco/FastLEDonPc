@@ -6,11 +6,6 @@
 
 #define ARRAYSIZE(a) (sizeof(a) / sizeof(*a))
 
-// to make my hacked together build/smartmatrix happy
-uint16_t XY( uint8_t x, uint8_t y) {
-	return 0;
-}
-
 // fast led constants
 #define DATA_PIN	3	// labeled as RX on nodeMCU
 #define COLOR_ORDER	GRB	// if colors are mismatched; change this
