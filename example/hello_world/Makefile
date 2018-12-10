@@ -6,4 +6,4 @@ ARDUINO_LIBS += FastLED_NeoMatrix
 ARDUINO_LIBS += Adafruit-GFX
 
 BUILD_ROOT := build
-include ../makeNativeArduino.mk
+include ../../makeNativeArduino.mk
