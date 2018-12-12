@@ -23,7 +23,7 @@ See the `example/` directory for an example.
 
 This uses a patched version of FastLED which outputs to a SDL buffer instead of real hardware.
 
-You use the following enviroment variables to control the simulated LED matrix:
+You can use the following enviroment variables to control the simulated LED matrix:
 
  - `FASTLED_WIDTH`: With of the Matrix
  - `FASTLED_HEIGHT`: Height of the Matrix
@@ -41,3 +41,12 @@ To install the required dependencies, run
 ```
 sudo apt install libsdl2-dev
 ```
+
+The project uses git submodules to include the Arduino libraries. To get them, you have to run
+
+```
+git submodule init
+git submodule update
+```
+
+after checking out the repository.
