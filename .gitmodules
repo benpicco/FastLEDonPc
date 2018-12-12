@@ -1,9 +1,9 @@
 [submodule "libraries/FastLED"]
 	path = libraries/FastLED
-	url = git@github.com:benpicco/FastLED.git
+	url = https://github.com/benpicco/FastLED.git
 [submodule "libraries/FastLED_NeoMatrix"]
 	path = libraries/FastLED_NeoMatrix
-	url = git@github.com:marcmerlin/FastLED_NeoMatrix.git
+	url = https://github.com/marcmerlin/FastLED_NeoMatrix.git
 [submodule "libraries/Adafruit-GFX-Library"]
 	path = libraries/Adafruit-GFX
-	url = git@github.com:adafruit/Adafruit-GFX-Library.git
+	url = https://github.com/adafruit/Adafruit-GFX-Library.git
