@@ -23,11 +23,11 @@ See the `example/` directory for an example.
 
 This uses a patched version of FastLED which outputs to a SDL buffer instead of real hardware.
 
-You can use the following enviroment variables to control the simulated LED matrix:
+To use it, replace your usual `FastLED.addLeds<WS2812B, DATA_PIN>(leds, num_leds);` with
 
- - `FASTLED_WIDTH`: With of the Matrix
- - `FASTLED_HEIGHT`: Height of the Matrix
- - `FASTLED_SCALE`: How many screen pixels each LED should be represented as
+```
+FastLED.addLeds<SDL, width, height>(leds, num_leds);
+```
 
 The Layout for NeoMatrix is `NEO_MATRIX_TOP + NEO_MATRIX_LEFT + NEO_MATRIX_ROWS` (no ZIGZAG as you would want on real hardware)
 
