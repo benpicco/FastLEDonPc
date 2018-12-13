@@ -1,1 +1,1 @@
-../Makefile
+../Makefile.inc
